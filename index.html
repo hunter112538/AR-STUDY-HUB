@@ -1,26 +1,583 @@
-:root{--primary:#4f46e5;--dark:#111827;--light:#f3f4f6;--white:#fff;--green:#16a34a;--red:#dc2626}
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:Arial,sans-serif;background:var(--light);color:var(--dark)}
-header{background:var(--dark);color:white;padding:18px 7%;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:15px}
-.logo{font-size:25px;font-weight:bold}.logo span{color:#a5b4fc}
-nav button{border:none;background:transparent;color:white;padding:10px;cursor:pointer;font-size:14px}
-nav button:hover{color:#a5b4fc}
-.hero{background:linear-gradient(135deg,#312e81,#6366f1);color:white;text-align:center;padding:65px 20px}
-.hero h1{font-size:38px;margin-bottom:15px}.hero p{line-height:1.7}
-.container{max-width:1050px;margin:30px auto;padding:20px}
-.card{background:white;padding:25px;border-radius:12px;margin-bottom:22px;box-shadow:0 4px 15px #0000000d}
-.card h2{margin-bottom:15px;color:var(--primary)}
-input,select{width:100%;padding:12px;margin:8px 0 15px;border:1px solid #d1d5db;border-radius:7px;font-size:15px}
-.btn{background:var(--primary);color:white;border:none;padding:12px 18px;border-radius:7px;cursor:pointer;margin:4px}
-.btn:hover{opacity:.88}.btn-green{background:var(--green)}.btn-red{background:var(--red)}
-.hidden{display:none!important}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
-.subject{background:white;padding:22px;border-radius:10px;border-left:5px solid var(--primary)}
-.subject h3{margin-bottom:10px}
-.material{border:1px solid #e5e7eb;padding:15px;margin:10px 0;border-radius:8px;overflow-wrap:anywhere}
-.material a{display:inline-block;margin-top:10px;color:var(--primary)}
-.notice{background:#eef2ff;border-left:4px solid var(--primary);padding:12px;margin:12px 0;line-height:1.5}
-#studentMessage,#adminMessage{margin:10px 0;font-weight:bold}
-footer{background:var(--dark);color:white;text-align:center;padding:25px;margin-top:40px}
-@media(max-width:600px){header{justify-content:center;text-align:center}.hero h1{font-size:29px}nav button{padding:8px 5px}}
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<title>AR Study Hub</title>
+
+<style>
+:root {
+    --primary: #4f46e5;
+    --dark: #111827;
+    --light: #f3f4f6;
+    --white: #ffffff;
+    --green: #16a34a;
+    --red: #dc2626;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: var(--light);
+    color: var(--dark);
+}
+
+header {
+    background: var(--dark);
+    color: white;
+    padding: 18px 7%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.logo {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.logo span {
+    color: #a5b4fc;
+}
+
+nav button {
+    border: none;
+    background: transparent;
+    color: white;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+nav button:hover {
+    color: #a5b4fc;
+}
+
+.hero {
+    background: linear-gradient(135deg, #312e81, #6366f1);
+    color: white;
+    text-align: center;
+    padding: 65px 20px;
+}
+
+.hero h1 {
+    font-size: 38px;
+    margin-bottom: 15px;
+}
+
+.hero p {
+    line-height: 1.7;
+}
+
+.container {
+    max-width: 1050px;
+    margin: 30px auto;
+    padding: 20px;
+}
+
+.card {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    margin-bottom: 22px;
+    box-shadow: 0 4px 15px #0000000d;
+}
+
+.card h2 {
+    margin-bottom: 15px;
+    color: var(--primary);
+}
+
+input, select {
+    width: 100%;
+    padding: 12px;
+    margin: 8px 0 15px;
+    border: 1px solid #d1d5db;
+    border-radius: 7px;
+    font-size: 15px;
+}
+
+.btn {
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 12px 18px;
+    border-radius: 7px;
+    cursor: pointer;
+    margin: 4px;
+}
+
+.btn:hover {
+    opacity: 0.88;
+}
+
+.btn-green {
+    background: var(--green);
+}
+
+.btn-red {
+    background: var(--red);
+}
+
+.hidden {
+    display: none !important;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 18px;
+}
+
+.subject {
+    background: white;
+    padding: 22px;
+    border-radius: 10px;
+    border-left: 5px solid var(--primary);
+}
+
+.subject h3 {
+    margin-bottom: 10px;
+}
+
+.material {
+    border: 1px solid #e5e7eb;
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 8px;
+    overflow-wrap: anywhere;
+}
+
+.material a {
+    display: inline-block;
+    margin-top: 10px;
+    color: var(--primary);
+}
+
+.notice {
+    background: #eef2ff;
+    border-left: 4px solid var(--primary);
+    padding: 12px;
+    margin: 12px 0;
+    line-height: 1.5;
+}
+
+#message {
+    margin: 10px 0;
+    font-weight: bold;
+}
+
+footer {
+    background: var(--dark);
+    color: white;
+    text-align: center;
+    padding: 25px;
+    margin-top: 40px;
+}
+
+@media (max-width: 600px) {
+    header {
+        justify-content: center;
+        text-align: center;
+    }
+
+    .hero h1 {
+        font-size: 29px;
+    }
+
+    nav button {
+        padding: 8px 5px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">AR <span>Study Hub</span></div>
+
+    <nav>
+        <button onclick="showSection('home')">Home</button>
+        <button onclick="showSection('materials')">Study Materials</button>
+        <button onclick="showSection('login')">Login</button>
+        <button onclick="showSection('adminLogin')">Admin</button>
+        <button onclick="logout()">Logout</button>
+    </nav>
+</header>
+
+<section class="hero" id="home">
+    <h1>Welcome to AR Study Hub</h1>
+    <p>Your learning journey starts here.</p>
+    <p>Access study notes, PDFs, presentations and learning resources.</p>
+    <br>
+    <button class="btn" onclick="showSection('login')">
+        Student Login
+    </button>
+    <button class="btn" onclick="showSection('materials')">
+        Explore Materials
+    </button>
+</section>
+
+<main class="container">
+
+    <!-- STUDENT LOGIN -->
+    <section id="login" class="card hidden">
+        <h2>Student Login</h2>
+
+        <p>Enter your student username to access the demo website.</p>
+
+        <form onsubmit="studentLogin(event)">
+            <label>Username</label>
+            <input id="studentName" required
+                   placeholder="Enter your username">
+
+            <button class="btn" type="submit">Login as Student</button>
+        </form>
+
+        <p id="studentMessage"></p>
+    </section>
+
+    <!-- ADMIN LOGIN -->
+    <section id="adminLogin" class="card hidden">
+        <h2>Administrator Login</h2>
+        <p>Authorized administrator: Raksha Mam</p>
+
+        <div class="notice">
+            This is a demonstration login, not secure authentication.
+            Do not use real passwords here.
+        </div>
+
+        <form onsubmit="adminLogin(event)">
+            <label>Admin Username</label>
+            <input id="adminUsername" required
+                   placeholder="Enter admin username">
+
+            <label>Admin Password</label>
+            <input id="adminPassword" type="password" required
+                   placeholder="Enter admin password">
+
+            <button class="btn" type="submit">Admin Login</button>
+        </form>
+
+        <p id="adminMessage"></p>
+    </section>
+
+    <!-- ADMIN DASHBOARD -->
+    <section id="dashboard" class="card hidden">
+        <h2>Admin Dashboard</h2>
+        <p>Welcome, Raksha Mam!</p>
+
+        <div class="notice">
+            Upload a study file and provide its title and subject.
+            In this prototype, files are available only during the
+            current browser session.
+        </div>
+
+        <form id="uploadForm" onsubmit="uploadMaterial(event)">
+            <label>Material Title</label>
+            <input id="materialTitle" required
+                   placeholder="Example: Human Anatomy Notes">
+
+            <label>Subject</label>
+            <input id="materialSubject" required
+                   placeholder="Example: Women's Health">
+
+            <label>Select File</label>
+            <input id="materialFile" type="file" required
+                   accept=".pdf,.ppt,.pptx,.doc,.docx,.txt">
+
+            <button class="btn btn-green" type="submit">
+                Upload Material
+            </button>
+        </form>
+
+        <hr style="margin:20px 0">
+
+        <h3>Uploaded Materials</h3>
+        <div id="adminMaterials"></div>
+    </section>
+
+    <!-- STUDY MATERIALS -->
+    <section id="materials" class="card hidden">
+        <h2>Study Materials</h2>
+
+        <p id="accessMessage">
+            Log in as a student to access study materials.
+        </p>
+
+        <div id="materialList"></div>
+    </section>
+
+    <!-- SUBJECTS -->
+    <section id="subjects">
+        <h2 style="margin-bottom:20px">Explore Subjects</h2>
+
+        <div class="grid">
+            <div class="subject">
+                <h3>📘 Women's Health</h3>
+                <p>Maternal health, pregnancy and reproductive health.</p>
+            </div>
+
+            <div class="subject">
+                <h3>📗 Child & Adolescent Health</h3>
+                <p>Child development, nutrition and adolescent health.</p>
+            </div>
+
+            <div class="subject">
+                <h3>📙 Health Systems Management</h3>
+                <p>Health services, PHC and health administration.</p>
+            </div>
+
+            <div class="subject">
+                <h3>📕 Chronic Diseases</h3>
+                <p>NCD prevention, screening and management.</p>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<footer>
+    <h3>AR Study Hub</h3>
+    <p>Learn Today. Lead Tomorrow.</p>
+    <p style="margin-top:10px">
+        © 2026 AR Study Hub. All rights reserved.
+    </p>
+</footer>
+
+<script>
+/*
+  DEMO ONLY:
+  The credentials below are visible in the HTML source.
+  Never use this method for a public website.
+*/
+const DEMO_ADMIN_USERNAME = "rakshamam";
+const DEMO_ADMIN_PASSWORD = "Admin@123";
+
+let currentUser = null;
+let isAdmin = false;
+let materials = [];
+
+function showSection(sectionId) {
+    const sections = [
+        "login",
+        "adminLogin",
+        "dashboard",
+        "materials"
+    ];
+
+    sections.forEach(id => {
+        document.getElementById(id).classList.add("hidden");
+    });
+
+    if (sectionId === "dashboard" && !isAdmin) {
+        alert("Only the administrator can access the dashboard.");
+        return;
+    }
+
+    if (sectionId === "materials" && !currentUser && !isAdmin) {
+        alert("Please log in before accessing study materials.");
+        sectionId = "login";
+    }
+
+    document.getElementById(sectionId).classList.remove("hidden");
+
+    if (sectionId === "materials") renderMaterials();
+    if (sectionId === "dashboard") renderAdminMaterials();
+
+    window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function studentLogin(event) {
+    event.preventDefault();
+
+    const username = document.getElementById("studentName").value.trim();
+
+    if (!username) return;
+
+    currentUser = username;
+    isAdmin = false;
+
+    document.getElementById("studentMessage").textContent =
+        "Welcome, " + username + "! Demo student login successful.";
+
+    document.getElementById("accessMessage").textContent =
+        "Welcome, " + username + ". Available study materials:";
+
+    showSection("materials");
+}
+
+function adminLogin(event) {
+    event.preventDefault();
+
+    const username = document.getElementById("adminUsername").value;
+    const password = document.getElementById("adminPassword").value;
+
+    if (
+        username === DEMO_ADMIN_USERNAME &&
+        password === DEMO_ADMIN_PASSWORD
+    ) {
+        currentUser = "Raksha Mam";
+        isAdmin = true;
+
+        document.getElementById("adminMessage").textContent =
+            "Admin demo login successful!";
+
+        showSection("dashboard");
+    } else {
+        document.getElementById("adminMessage").textContent =
+            "Incorrect demo username or password.";
+    }
+}
+
+function uploadMaterial(event) {
+    event.preventDefault();
+
+    if (!isAdmin) {
+        alert("Admin access required.");
+        return;
+    }
+
+    const title = document.getElementById("materialTitle").value.trim();
+    const subject = document.getElementById("materialSubject").value.trim();
+    const fileInput = document.getElementById("materialFile");
+    const file = fileInput.files[0];
+
+    if (!file || !title || !subject) return;
+
+    // Demo limit to avoid selecting unnecessarily large files.
+    if (file.size > 20 * 1024 * 1024) {
+        alert("For this demo, please choose a file under 20 MB.");
+        return;
+    }
+
+    const allowedExtensions = [
+        "pdf", "ppt", "pptx", "doc", "docx", "txt"
+    ];
+
+    const extension = file.name.split(".").pop().toLowerCase();
+
+    if (!allowedExtensions.includes(extension)) {
+        alert("Please choose a supported study document.");
+        return;
+    }
+
+    const fileURL = URL.createObjectURL(file);
+
+    materials.push({
+        id: Date.now(),
+        title: title,
+        subject: subject,
+        filename: file.name,
+        url: fileURL
+    });
+
+    document.getElementById("uploadForm").reset();
+
+    renderAdminMaterials();
+
+    alert("Material added for this browser session.");
+}
+
+function renderMaterials() {
+    const list = document.getElementById("materialList");
+    list.innerHTML = "";
+
+    if (!materials.length) {
+        list.innerHTML =
+            "<p>No study materials have been uploaded yet.</p>";
+        return;
+    }
+
+    materials.forEach(item => {
+        const div = document.createElement("div");
+        div.className = "material";
+
+        const title = document.createElement("h3");
+        title.textContent = item.title;
+
+        const subject = document.createElement("p");
+        subject.textContent = "Subject: " + item.subject;
+
+        const filename = document.createElement("p");
+        filename.textContent = "File: " + item.filename;
+
+        const link = document.createElement("a");
+        link.href = item.url;
+        link.download = item.filename;
+        link.textContent = "Open / Download Material";
+
+        div.append(title, subject, filename, link);
+        list.appendChild(div);
+    });
+}
+
+function renderAdminMaterials() {
+    const list = document.getElementById("adminMaterials");
+    list.innerHTML = "";
+
+    if (!materials.length) {
+        list.textContent = "No materials uploaded in this session.";
+        return;
+    }
+
+    materials.forEach(item => {
+        const div = document.createElement("div");
+        div.className = "material";
+
+        const title = document.createElement("h3");
+        title.textContent = item.title;
+
+        const subject = document.createElement("p");
+        subject.textContent = "Subject: " + item.subject;
+
+        const remove = document.createElement("button");
+        remove.className = "btn btn-red";
+        remove.textContent = "Remove";
+
+        remove.onclick = () => {
+            if (!isAdmin) return;
+
+            URL.revokeObjectURL(item.url);
+            materials = materials.filter(m => m.id !== item.id);
+
+            renderAdminMaterials();
+            renderMaterials();
+        };
+
+        div.append(title, subject, remove);
+        list.appendChild(div);
+    });
+}
+
+function logout() {
+    currentUser = null;
+    isAdmin = false;
+
+    document.getElementById("studentName").value = "";
+    document.getElementById("adminUsername").value = "";
+    document.getElementById("adminPassword").value = "";
+
+    document.getElementById("studentMessage").textContent = "";
+    document.getElementById("adminMessage").textContent = "";
+
+    showSection("home");
+}
+
+// Start on the home page.
+showSection("home");
+</script>
+
+</body>
+</html>
+```
