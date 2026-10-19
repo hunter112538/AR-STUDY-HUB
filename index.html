@@ -1,4 +1,4 @@
-```html
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -331,17 +331,29 @@ footer {
             <div class="subject">
                 <h3>📗 Child & Adolescent Health</h3>
                 <p>Child development, nutrition and adolescent health.</p>
-            </div>
+                
+            <div class="subject">
+                <h3>📙 Occupational Health</h3>
+                <p> Metals in the Workplace, Occupational Hazards & Diseases,.</p>
 
             <div class="subject">
                 <h3>📙 Health Systems Management</h3>
                 <p>Health services, PHC and health administration.</p>
-            </div>
+                
+            <div class="subject">
+                <h3>📕 Infectious Disease</h3>
+                <p>HIV and AIDS, Chikungunya fever, Typhoid & Food Poisoning.</p>
 
             <div class="subject">
                 <h3>📕 Chronic Diseases</h3>
                 <p>NCD prevention, screening and management.</p>
-            </div>
+            <div class="subject">
+                <h3>📕 Epidemology-2</h3>
+                <p>Disease outBreaks, Surveillance, field epidemology.</p>
+                
+             <div class="subject">
+                <h3>📕 Health Education and Communication</h3>
+                <p>APPROACHES INHEALTH, HUMAN BEHAVIOUR, Health Promotion.</p>
         </div>
     </section>
 
@@ -361,7 +373,7 @@ footer {
   The credentials below are visible in the HTML source.
   Never use this method for a public website.
 */
-const DEMO_ADMIN_USERNAME = "rakshamam";
+const DEMO_ADMIN_USERNAME = "Admin";
 const DEMO_ADMIN_PASSWORD = "Admin@123";
 
 let currentUser = null;
@@ -427,11 +439,11 @@ function adminLogin(event) {
         username === DEMO_ADMIN_USERNAME &&
         password === DEMO_ADMIN_PASSWORD
     ) {
-        currentUser = "Raksha Mam";
+        currentUser = "Hemanth";
         isAdmin = true;
 
         document.getElementById("adminMessage").textContent =
-            "Admin demo login successful!";
+            "Admin login successful!";
 
         showSection("dashboard");
     } else {
