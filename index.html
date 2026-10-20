@@ -90,8 +90,8 @@ main{max-width:1120px;margin:0 auto;padding:32px 20px}.hero{padding:34px;border-
  4) Create/invite users in Supabase Auth. Assign the administrator role using the SQL in README.md.
  NEVER put a service_role/secret key in browser code.
 */
-const SUPABASE_URL = "https://YOUR-PROJECT.supabase.co";
-const SUPABASE_ANON_KEY = "YOUR_SUPABASE_ANON_OR_PUBLISHABLE_KEY";
+const SUPABASE_URL = "https://wpqgoparxbobpmmssqvr.supabase.co";
+const SUPABASE_ANON_KEY = "sb_publishable_A-L0BFP4lPwlpjKD6XVBvw_ah701ST2";
 const CONFIGURED = !SUPABASE_URL.includes("YOUR-PROJECT") && !SUPABASE_ANON_KEY.includes("YOUR_SUPABASE");
 const supabaseClient = CONFIGURED && window.supabase
   ? window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
