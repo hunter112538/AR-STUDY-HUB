@@ -1,184 +1,230 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AR Study Hub | Login</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AR Study Hub</title>
+<style>
+:root{--navy:#111a3a;--purple:#5947d8;--violet:#8b5cf6;--bg:#f5f7ff;--ink:#202642;--muted:#69718b;--line:#e5e8f4}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,Arial,sans-serif;background:var(--bg);color:var(--ink)}
+header{background:linear-gradient(120deg,var(--navy),#4034a8);color:white;padding:18px max(5%,calc((100% - 1120px)/2));display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+.brand{display:flex;gap:12px;align-items:center;font-weight:800;font-size:20px}.logo{background:white;color:var(--purple);width:42px;height:42px;border-radius:13px;display:grid;place-items:center;font-weight:900}
+nav{display:flex;gap:10px;align-items:center;flex-wrap:wrap}button,.button{border:0;border-radius:10px;padding:11px 15px;font-weight:700;cursor:pointer;font-size:14px}.primary{background:var(--purple);color:white}.light{background:white;color:var(--navy)}.outline{background:transparent;border:1px solid #cfd3e6;color:var(--ink)}button:disabled{opacity:.5;cursor:not-allowed}
+main{max-width:1120px;margin:0 auto;padding:32px 20px}.hero{padding:34px;border-radius:22px;background:linear-gradient(125deg,#fff,#eceaff);border:1px solid #e3e0ff;margin-bottom:25px}.eyebrow{color:var(--purple);font-weight:800;font-size:12px;letter-spacing:1.4px;text-transform:uppercase}.hero h1{font-size:clamp(30px,5vw,48px);margin:12px 0}.hero p{color:var(--muted);max-width:650px;line-height:1.65}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:18px}.card{background:white;border:1px solid var(--line);border-radius:17px;padding:22px;box-shadow:0 8px 28px #1a245008}.card h2,.card h3{margin-top:0}.muted{color:var(--muted);line-height:1.5}.hidden{display:none!important}.form-group{margin:14px 0}label{display:block;font-weight:700;font-size:13px;margin-bottom:7px}input,select{width:100%;padding:12px;border:1px solid #d9deed;border-radius:10px;font-size:15px;background:white;color:var(--ink)}input:focus,select:focus{outline:2px solid #c8c1ff;border-color:var(--purple)}.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}.status{padding:12px 14px;background:#f0efff;color:#4034a8;border-radius:10px;margin:14px 0;font-size:14px;white-space:pre-wrap}.status.error{background:#fff0f0;color:#a32727}.status.success{background:#edfff4;color:#176b3b}.tabs{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}.tab.active{background:var(--navy);color:white}.material{display:flex;justify-content:space-between;gap:15px;align-items:center;border:1px solid var(--line);border-radius:12px;padding:14px;margin-top:10px}.material p{margin:4px 0;color:var(--muted);font-size:13px}.pill{font-size:11px;font-weight:800;background:#f0efff;color:#5144c6;padding:5px 8px;border-radius:30px}footer{text-align:center;padding:25px;color:var(--muted);font-size:13px}
+@media(max-width:600px){header{padding:15px 18px}.row{grid-template-columns:1fr}.hero{padding:24px}main{padding:22px 14px}.material{align-items:flex-start;flex-direction:column}}
+</style>
+</head>
+<body>
+<header>
+  <div class="brand"><div class="logo">AR</div><span>AR Study Hub</span></div>
+  <nav>
+    <button class="light" id="navHome">Home</button>
+    <button class="light" id="navLogin">Login</button>
+    <button class="light hidden" id="navDashboard">Dashboard</button>
+    <button class="light hidden" id="navLogout">Sign out</button>
+  </nav>
+</header>
+<main>
+  <section id="homeView">
+    <div class="hero">
+      <div class="eyebrow">Learn · Practice · Succeed</div>
+      <h1>Your learning journey starts here.</h1>
+      <p>Access organized notes, revision materials, presentations, and documents from one study space. Sign in to view resources shared by the AR Study Hub administrator.</p>
+      <button class="primary" id="heroLogin">Sign in to continue →</button>
+    </div>
+    <div class="grid">
+      <article class="card"><h3>📚 Organized notes</h3><p class="muted">Find learning resources by subject, semester, or file type.</p></article>
+      <article class="card"><h3>🔐 Controlled access</h3><p class="muted">Authentication and database permissions help keep resources available only to authorized users.</p></article>
+      <article class="card"><h3>👩‍🏫 Admin managed</h3><p class="muted">The authorized administrator can upload and manage study materials.</p></article>
+    </div>
+  </section>
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: Arial, sans-serif;
-        }
+  <section id="loginView" class="hidden">
+    <div class="card" style="max-width:520px;margin:0 auto">
+      <div class="eyebrow">Secure access</div><h2>Welcome back</h2>
+      <p class="muted">Sign in with your approved account. Admin permissions are assigned in the database, not chosen on this form.</p>
+      <form id="loginForm">
+        <div class="form-group"><label for="email">Email</label><input id="email" type="email" autocomplete="username" required placeholder="you@example.com"></div>
+        <div class="form-group"><label for="password">Password</label><input id="password" type="password" autocomplete="current-password" required placeholder="Your password"></div>
+        <button class="primary" style="width:100%" type="submit">Sign in</button>
+      </form>
+      <button class="outline" id="resetPassword" style="margin-top:10px;width:100%">Send password reset email</button>
+      <div id="loginStatus" class="status hidden" role="status"></div>
+      <p class="muted" style="font-size:12px">Student account creation is disabled in this starter. The administrator can create or invite approved users through Supabase Auth.</p>
+    </div>
+  </section>
 
-        body {
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background: linear-gradient(135deg, #101b3d, #4338ca, #7c3aed);
-            padding: 20px;
-        }
+  <section id="dashboardView" class="hidden">
+    <div class="hero"><div class="eyebrow" id="roleLabel">Signed in</div><h1 id="welcomeTitle">Study dashboard</h1><p id="welcomeText" class="muted">Your study materials are below.</p></div>
+    <div id="dashboardStatus" class="status hidden" role="status"></div>
+    <div class="tabs"><button class="outline tab active" id="studentTab">Study materials</button><button class="outline tab hidden" id="adminTab">Admin uploads</button></div>
+    <section id="materialsPanel" class="card"><h2>Available study materials</h2><p class="muted">Resources are loaded from the Supabase database. Files should be stored in a private bucket.</p><div id="materialsList"></div></section>
+    <section id="adminPanel" class="card hidden" style="margin-top:18px">
+      <h2>Admin: upload a study resource</h2>
+      <p class="muted">Only users whose profile role is <code>admin</code> can upload. Allowed types: PDF, Word, PowerPoint. Maximum file size: 20 MB in this UI.</p>
+      <form id="uploadForm">
+        <div class="row">
+          <div class="form-group"><label for="title">Material title</label><input id="title" required maxlength="120" placeholder="e.g. Women’s Health Revision Notes"></div>
+          <div class="form-group"><label for="subject">Subject</label><input id="subject" required maxlength="80" placeholder="e.g. Women’s Health"></div>
+        </div>
+        <div class="row">
+          <div class="form-group"><label for="semester">Semester</label><input id="semester" maxlength="40" placeholder="e.g. 4th Semester"></div>
+          <div class="form-group"><label for="file">Select file</label><input id="file" type="file" accept=".pdf,.doc,.docx,.ppt,.pptx" required></div>
+        </div>
+        <button class="primary" type="submit" id="uploadButton">Upload material</button>
+      </form>
+    </section>
+  </section>
+  <div id="globalStatus" class="status hidden" role="status"></div>
+</main>
+<footer>© <span id="year"></span> AR Study Hub · Learning for everyone</footer>
 
-        .login-container {
-            width: 100%;
-            max-width: 400px;
-            padding: 35px;
-            background: white;
-            border-radius: 18px;
-            box-shadow: 0 15px 45px rgba(0, 0, 0, 0.3);
-        }
+<!-- Supabase JavaScript client (official CDN). Configure URL and anon/publishable key below. -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+/*
+ SETUP REQUIRED:
+ 1) Create a Supabase project.
+ 2) Replace the two placeholders below with your Project URL and anon/publishable key.
+ 3) Run schema.sql in Supabase SQL Editor.
+ 4) Create/invite users in Supabase Auth. Assign the administrator role using the SQL in README.md.
+ NEVER put a service_role/secret key in browser code.
+*/
+const SUPABASE_URL = "https://YOUR-PROJECT.supabase.co";
+const SUPABASE_ANON_KEY = "YOUR_SUPABASE_ANON_OR_PUBLISHABLE_KEY";
+const CONFIGURED = !SUPABASE_URL.includes("YOUR-PROJECT") && !SUPABASE_ANON_KEY.includes("YOUR_SUPABASE");
+const supabaseClient = CONFIGURED && window.supabase
+  ? window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
+  : null;
 
-        .logo {
-            width: 75px;
-            height: 75px;
-            margin: 0 auto 15px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background: linear-gradient(135deg, #4338ca, #7c3aed);
-            color: white;
-            font-size: 25px;
-            font-weight: bold;
-            border-radius: 50%;
-        }
+const $ = id => document.getElementById(id);
+$("year").textContent = new Date().getFullYear();
+let currentUser = null;
+let currentRole = "student";
 
-        h1 {
-            text-align: center;
-            color: #252b50;
-            font-size: 27px;
-            margin-bottom: 8px;
-        }
-
-        .subtitle {
-            text-align: center;
-            color: #777;
-            font-size: 14px;
-            margin-bottom: 28px;
-        }
-
-        .form-group {
-            margin-bottom: 18px;
-        }
-
-        label {
-            display: block;
-            font-size: 14px;
-            font-weight: bold;
-            color: #333;
-            margin-bottom: 8px;
-        }
-
-        input {
-            width: 100%;
-            padding: 13px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            font-size: 15px;
-            outline: none;
-        }
-
-        input:focus {
-            border-color: #5b4bdb;
-            box-shadow: 0 0 0 3px rgba(91, 75, 219, 0.12);
-        }
-
-        .password-box {
-            position: relative;
-        }
-
-        .password-box input {
-            padding-right: 65px;
-        }
-
-        .toggle-password {
-            position: absolute;
-            right: 12px;
-            top: 50%;
-            transform: translateY(-50%);
-            border: none;
-            background: none;
-            color: #5145cd;
-            cursor: pointer;
-            font-size: 12px;
-            font-weight: bold;
-        }
-
-        .options {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin: 5px 0 22px;
-            font-size: 13px;
-        }
-
-        .remember {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            color: #555;
-        }
-
-        .remember input {
-            width: auto;
-        }
-
-        .options a {
-            color: #5145cd;
-            text-decoration: none;
-        }
-
-        .login-btn {
-            width: 100%;
-            padding: 14px;
-            border: none;
-            border-radius: 8px;
-            background: linear-gradient(135deg, #4338ca, #7c3aed);
-            color: white;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-
-        .login-btn:hover {
-            opacity: 0.9;
-            transform: translateY(-1px);
-        }
-
-        .message {
-            margin-top: 15px;
-            text-align: center;
-            font-size: 13px;
-            color: #c0392b;
-            min-height: 16px;
-        }
-
-        .footer {
-            margin-top: 25px;
-            text-align: center;
-            color: #888;
-            font-size: 12px;
-            line-height: 1.6;
-        }
-
-        .admin-note {
-            margin-top: 15px;
-            padding: 10px;
-            background: #f2f0ff;
-            color: #5145cd;
-            text-align: center;
-            border-radius: 8px;
-            font-size: 12px;
-        }
-
-        @media (max-width: 450px) {
-            .login-container {
-                padding: 25px 20px;
-            }
-
-            h1 {
-                font-size: 24px
+function showView(view) {
+  ["homeView","loginView","dashboardView"].forEach(id => $(id).classList.toggle("hidden", id !== view));
+}
+function status(id, text, type="") {
+  const el=$(id); el.textContent=text; el.classList.remove("hidden","error","success");
+  if(type) el.classList.add(type);
+}
+function globalMessage(text, type="") { status("globalStatus",text,type); }
+function requireConfig() {
+  if(!supabaseClient) {
+    showView("loginView");
+    status("loginStatus","Setup needed: open index.html and replace SUPABASE_URL and SUPABASE_ANON_KEY with your Supabase project values. Then run schema.sql in Supabase.","error");
+    return false;
+  }
+  return true;
+}
+$("navHome").onclick = () => showView("homeView");
+$("navLogin").onclick = () => { showView("loginView"); if(!CONFIGURED) requireConfig(); };
+$("heroLogin").onclick = $("navLogin").onclick;
+$("navDashboard").onclick = () => currentUser ? showView("dashboardView") : showView("loginView");
+$("navLogout").onclick = async () => {
+  if(supabaseClient) await supabaseClient.auth.signOut();
+  currentUser=null; currentRole="student";
+  $("navDashboard").classList.add("hidden"); $("navLogout").classList.add("hidden");
+  $("navLogin").classList.remove("hidden"); showView("homeView");
+  globalMessage("You have signed out.","success");
+};
+$("loginForm").addEventListener("submit", async e => {
+  e.preventDefault();
+  if(!requireConfig()) return;
+  status("loginStatus","Signing in…");
+  const {data,error}=await supabaseClient.auth.signInWithPassword({
+    email:$("email").value.trim(), password:$("password").value
+  });
+  if(error) { status("loginStatus",error.message,"error"); return; }
+  await loadSession(data.user);
+});
+$("resetPassword").onclick = async () => {
+  if(!requireConfig()) return;
+  const email=$("email").value.trim();
+  if(!email) { status("loginStatus","Enter your email first, then click password reset.","error"); return; }
+  const {error}=await supabaseClient.auth.resetPasswordForEmail(email,{redirectTo:location.origin+location.pathname});
+  status("loginStatus",error ? error.message : "If the account exists, a password reset email has been sent.",error?"error":"success");
+};
+async function loadSession(user) {
+  currentUser=user;
+  const {data:profile,error}=await supabaseClient.from("profiles").select("role,display_name").eq("id",user.id).maybeSingle();
+  if(error) {
+    status("dashboardStatus","Could not load profile. Check schema.sql and the profiles table permissions: "+error.message,"error");
+    currentRole="student";
+  } else currentRole=profile?.role==="admin" ? "admin" : "student";
+  $("roleLabel").textContent=currentRole==="admin"?"Administrator area":"Student area";
+  $("welcomeTitle").textContent="Welcome, "+(profile?.display_name || user.email || "Learner");
+  $("welcomeText").textContent=currentRole==="admin"?"Manage and publish study materials for authorized learners.":"Browse the study materials made available to your account.";
+  $("adminTab").classList.toggle("hidden",currentRole!=="admin");
+  $("adminPanel").classList.add("hidden");
+  $("navLogin").classList.add("hidden"); $("navDashboard").classList.remove("hidden"); $("navLogout").classList.remove("hidden");
+  showView("dashboardView"); await loadMaterials();
+}
+async function loadMaterials() {
+  $("materialsList").innerHTML="<p class='muted'>Loading materials…</p>";
+  const {data,error}=await supabaseClient.from("materials").select("id,title,subject,semester,storage_path,file_name,created_at").order("created_at",{ascending:false});
+  if(error) { $("materialsList").innerHTML=""; status("dashboardStatus","Could not load materials: "+error.message,"error"); return; }
+  if(!data?.length) { $("materialsList").innerHTML="<p class='muted'>No study materials have been uploaded yet.</p>"; return; }
+  $("materialsList").innerHTML="";
+  for(const item of data) {
+    const row=document.createElement("div"); row.className="material";
+    const info=document.createElement("div");
+    const h=document.createElement("strong"); h.textContent=item.title;
+    const p=document.createElement("p"); p.textContent=[item.subject,item.semester,item.file_name].filter(Boolean).join(" · ");
+    const pill=document.createElement("span"); pill.className="pill"; pill.textContent="STUDY MATERIAL";
+    info.append(h,p,pill);
+    const open=document.createElement("button"); open.className="primary"; open.textContent="Open file";
+    open.onclick=async()=>{
+      const {data:link,error:linkError}=await supabaseClient.storage.from("study-materials").createSignedUrl(item.storage_path,60);
+      if(linkError) { status("dashboardStatus","Unable to open file: "+linkError.message,"error"); return; }
+      window.open(link.signedUrl,"_blank","noopener,noreferrer");
+    };
+    row.append(info,open); $("materialsList").append(row);
+  }
+}
+$("studentTab").onclick=()=>{ $("materialsPanel").classList.remove("hidden"); $("adminPanel").classList.add("hidden"); $("studentTab").classList.add("active"); $("adminTab").classList.remove("active"); };
+$("adminTab").onclick=()=>{ if(currentRole!=="admin") return; $("materialsPanel").classList.add("hidden"); $("adminPanel").classList.remove("hidden"); $("adminTab").classList.add("active"); $("studentTab").classList.remove("active"); };
+$("uploadForm").addEventListener("submit",async e=>{
+  e.preventDefault();
+  if(!supabaseClient || !currentUser || currentRole!=="admin") { status("dashboardStatus","Admin permission is required.","error"); return; }
+  const file=$("file").files[0];
+  const allowed=["application/pdf","application/msword","application/vnd.openxmlformats-officedocument.wordprocessingml.document","application/vnd.ms-powerpoint","application/vnd.openxmlformats-officedocument.presentationml.presentation"];
+  const ext=file?.name.split(".").pop().toLowerCase();
+  if(!file || !["pdf","doc","docx","ppt","pptx"].includes(ext)) { status("dashboardStatus","Choose a PDF, Word, or PowerPoint file.","error"); return; }
+  if(file.size>20*1024*1024) { status("dashboardStatus","The file is larger than 20 MB. Choose a smaller file.","error"); return; }
+  $("uploadButton").disabled=true; $("uploadButton").textContent="Uploading…";
+  const safeName=file.name.replace(/[^a-zA-Z0-9._-]/g,"_");
+  const path=currentUser.id+"/"+crypto.randomUUID()+"-"+safeName;
+  const {error:uploadError}=await supabaseClient.storage.from("study-materials").upload(path,file,{upsert:false,contentType:file.type||"application/octet-stream"});
+  if(uploadError) { status("dashboardStatus","Upload failed: "+uploadError.message,"error"); $("uploadButton").disabled=false; $("uploadButton").textContent="Upload material"; return; }
+  const {error:dbError}=await supabaseClient.from("materials").insert({
+    title:$("title").value.trim(),subject:$("subject").value.trim(),
+    semester:$("semester").value.trim()||null,storage_path:path,file_name:file.name,uploaded_by:currentUser.id
+  });
+  if(dbError) {
+    // Best-effort cleanup if database insertion fails.
+    await supabaseClient.storage.from("study-materials").remove([path]);
+    status("dashboardStatus","File uploaded but database entry failed: "+dbError.message,"error");
+  } else {
+    status("dashboardStatus","Material uploaded successfully.","success");
+    $("uploadForm").reset(); await loadMaterials();
+  }
+  $("uploadButton").disabled=false; $("uploadButton").textContent="Upload material";
+});
+async function restoreSession() {
+  if(!supabaseClient) return;
+  const {data}=await supabaseClient.auth.getSession();
+  if(data.session?.user) await loadSession(data.session.user);
+  supabaseClient.auth.onAuthStateChange((_event,session)=>{
+    if(!session && currentUser) {
+      currentUser=null; currentRole="student";
+      $("navDashboard").classList.add("hidden"); $("navLogout").classList.add("hidden"); $("navLogin").classList.remove("hidden");
+      showView("homeView");
+    }
+  });
+}
+restoreSession();
+</script>
+</body>
+</html>
