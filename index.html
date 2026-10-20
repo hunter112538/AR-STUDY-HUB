@@ -1,612 +1,295 @@
-
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AR Study Hub | Login</title>
 
-<title>AR Study Hub</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
 
-<style>
-:root {
-    --primary: #4f46e5;
-    --dark: #111827;
-    --light: #f3f4f6;
-    --white: #ffffff;
-    --green: #16a34a;
-    --red: #dc2626;
-}
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #101b3d, #4338ca, #7c3aed);
+            padding: 20px;
+        }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+        .login-container {
+            width: 100%;
+            max-width: 400px;
+            padding: 35px;
+            background: white;
+            border-radius: 18px;
+            box-shadow: 0 15px 45px rgba(0, 0, 0, 0.3);
+        }
 
-body {
-    font-family: Arial, sans-serif;
-    background: var(--light);
-    color: var(--dark);
-}
+        .logo {
+            width: 75px;
+            height: 75px;
+            margin: 0 auto 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #4338ca, #7c3aed);
+            color: white;
+            font-size: 25px;
+            font-weight: bold;
+            border-radius: 50%;
+        }
 
-header {
-    background: var(--dark);
-    color: white;
-    padding: 18px 7%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 15px;
-}
+        h1 {
+            text-align: center;
+            color: #252b50;
+            font-size: 27px;
+            margin-bottom: 8px;
+        }
 
-.logo {
-    font-size: 25px;
-    font-weight: bold;
-}
+        .subtitle {
+            text-align: center;
+            color: #777;
+            font-size: 14px;
+            margin-bottom: 28px;
+        }
 
-.logo span {
-    color: #a5b4fc;
-}
+        .form-group {
+            margin-bottom: 18px;
+        }
 
-nav button {
-    border: none;
-    background: transparent;
-    color: white;
-    padding: 10px;
-    cursor: pointer;
-    font-size: 14px;
-}
+        label {
+            display: block;
+            font-size: 14px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 8px;
+        }
 
-nav button:hover {
-    color: #a5b4fc;
-}
+        input {
+            width: 100%;
+            padding: 13px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 15px;
+            outline: none;
+        }
 
-.hero {
-    background: linear-gradient(135deg, #312e81, #6366f1);
-    color: white;
-    text-align: center;
-    padding: 65px 20px;
-}
+        input:focus {
+            border-color: #5b4bdb;
+            box-shadow: 0 0 0 3px rgba(91, 75, 219, 0.12);
+        }
 
-.hero h1 {
-    font-size: 38px;
-    margin-bottom: 15px;
-}
+        .password-box {
+            position: relative;
+        }
 
-.hero p {
-    line-height: 1.7;
-}
+        .password-box input {
+            padding-right: 65px;
+        }
 
-.container {
-    max-width: 1050px;
-    margin: 30px auto;
-    padding: 20px;
-}
+        .toggle-password {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            border: none;
+            background: none;
+            color: #5145cd;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: bold;
+        }
 
-.card {
-    background: white;
-    padding: 25px;
-    border-radius: 12px;
-    margin-bottom: 22px;
-    box-shadow: 0 4px 15px #0000000d;
-}
+        .options {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 5px 0 22px;
+            font-size: 13px;
+        }
 
-.card h2 {
-    margin-bottom: 15px;
-    color: var(--primary);
-}
+        .remember {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            color: #555;
+        }
 
-input, select {
-    width: 100%;
-    padding: 12px;
-    margin: 8px 0 15px;
-    border: 1px solid #d1d5db;
-    border-radius: 7px;
-    font-size: 15px;
-}
+        .remember input {
+            width: auto;
+        }
 
-.btn {
-    background: var(--primary);
-    color: white;
-    border: none;
-    padding: 12px 18px;
-    border-radius: 7px;
-    cursor: pointer;
-    margin: 4px;
-}
+        .options a {
+            color: #5145cd;
+            text-decoration: none;
+        }
 
-.btn:hover {
-    opacity: 0.88;
-}
+        .login-btn {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 8px;
+            background: linear-gradient(135deg, #4338ca, #7c3aed);
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
 
-.btn-green {
-    background: var(--green);
-}
+        .login-btn:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
+        }
 
-.btn-red {
-    background: var(--red);
-}
+        .message {
+            margin-top: 15px;
+            text-align: center;
+            font-size: 13px;
+            color: #c0392b;
+            min-height: 16px;
+        }
 
-.hidden {
-    display: none !important;
-}
+        .footer {
+            margin-top: 25px;
+            text-align: center;
+            color: #888;
+            font-size: 12px;
+            line-height: 1.6;
+        }
 
-.grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 18px;
-}
+        .admin-note {
+            margin-top: 15px;
+            padding: 10px;
+            background: #f2f0ff;
+            color: #5145cd;
+            text-align: center;
+            border-radius: 8px;
+            font-size: 12px;
+        }
 
-.subject {
-    background: white;
-    padding: 22px;
-    border-radius: 10px;
-    border-left: 5px solid var(--primary);
-}
+        @media (max-width: 450px) {
+            .login-container {
+                padding: 25px 20px;
+            }
 
-.subject h3 {
-    margin-bottom: 10px;
-}
-
-.material {
-    border: 1px solid #e5e7eb;
-    padding: 15px;
-    margin: 10px 0;
-    border-radius: 8px;
-    overflow-wrap: anywhere;
-}
-
-.material a {
-    display: inline-block;
-    margin-top: 10px;
-    color: var(--primary);
-}
-
-.notice {
-    background: #eef2ff;
-    border-left: 4px solid var(--primary);
-    padding: 12px;
-    margin: 12px 0;
-    line-height: 1.5;
-}
-
-#message {
-    margin: 10px 0;
-    font-weight: bold;
-}
-
-footer {
-    background: var(--dark);
-    color: white;
-    text-align: center;
-    padding: 25px;
-    margin-top: 40px;
-}
-
-@media (max-width: 600px) {
-    header {
-        justify-content: center;
-        text-align: center;
-    }
-
-    .hero h1 {
-        font-size: 29px;
-    }
-
-    nav button {
-        padding: 8px 5px;
-    }
-}
-</style>
+            h1 {
+                font-size: 24px;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-<header>
-    <div class="logo">AR <span>Study Hub</span></div>
+    <div class="login-container">
 
-    <nav>
-        <button onclick="showSection('home')">Home</button>
-        <button onclick="showSection('materials')">Study Materials</button>
-        <button onclick="showSection('login')">Login</button>
-        <button onclick="showSection('adminLogin')">Admin</button>
-        <button onclick="logout()">Logout</button>
-    </nav>
-</header>
+        <div class="logo">AR</div>
 
-<section class="hero" id="home">
-    <h1>Welcome to AR Study Hub</h1>
-    <p>Your learning journey starts here.</p>
-    <p>Access study notes, PDFs, presentations and learning resources.</p>
-    <br>
-    <button class="btn" onclick="showSection('login')">
-        Student Login
-    </button>
-    <button class="btn" onclick="showSection('materials')">
-        Explore Materials
-    </button>
-</section>
+        <h1>AR Study Hub</h1>
+        <p class="subtitle">Your Learning Journey Starts Here</p>
 
-<main class="container">
+        <form id="loginForm">
 
-    <!-- STUDENT LOGIN -->
-    <section id="login" class="card hidden">
-        <h2>Student Login</h2>
+            <div class="form-group">
+                <label for="username">Email or Username</label>
+                <input
+                    type="text"
+                    id="username"
+                    placeholder="Enter your username"
+                    autocomplete="username"
+                    required
+                >
+            </div>
 
-        <p>Enter your student username to access the demo website.</p>
+            <div class="form-group">
+                <label for="password">Password</label>
 
-        <form onsubmit="studentLogin(event)">
-            <label>Username</label>
-            <input id="studentName" required
-                   placeholder="Enter your username">
+                <div class="password-box">
+                    <input
+                        type="password"
+                        id="password"
+                        placeholder="Enter your password"
+                        autocomplete="current-password"
+                        required
+                    >
 
-            <button class="btn" type="submit">Login as Student</button>
-        </form>
+                    <button
+                        type="button"
+                        class="toggle-password"
+                        id="togglePassword"
+                    >SHOW</button>
+                </div>
+            </div>
 
-        <p id="studentMessage"></p>
-    </section>
+            <div class="options">
+                <label class="remember">
+                    <input type="checkbox" id="remember">
+                    Remember me
+                </label>
 
-    <!-- ADMIN LOGIN -->
-    <section id="adminLogin" class="card hidden">
-        <h2>Administrator Login</h2>
-        <p>Authorized administrator: Admin</p>
+                <a href="#" id="forgotPassword">Forgot password?</a>
+            </div>
 
-        <div class="notice">
-            This is a adminastrator login, not for unauthentic useres.
-            
-        </div>
-
-        <form onsubmit="adminLogin(event)">
-            <label>Admin Username</label>
-            <input id="adminUsername" required
-                   placeholder="Enter admin username">
-
-            <label>Admin Password</label>
-            <input id="adminPassword" type="password" required
-                   placeholder="Enter admin password">
-
-            <button class="btn" type="submit">Admin Login</button>
-        </form>
-
-        <p id="adminMessage"></p>
-    </section>
-
-    <!-- ADMIN DASHBOARD -->
-    <section id="dashboard" class="card hidden">
-        <h2>Admin Dashboard</h2>
-        <p>Welcome, Admin !</p>
-
-        <div class="notice">
-            Upload a study file and provide its title and subject.
-            In this prototype, files are available only during the
-            current browser session.
-        </div>
-
-        <form id="uploadForm" onsubmit="uploadMaterial(event)">
-            <label>Material Title</label>
-            <input id="materialTitle" required
-                   placeholder="Example: Human Anatomy Notes">
-
-            <label>Subject</label>
-            <input id="materialSubject" required
-                   placeholder="Example: Women's Health">
-
-            <label>Select File</label>
-            <input id="materialFile" type="file" required
-                   accept=".pdf,.ppt,.pptx,.doc,.docx,.txt">
-
-            <button class="btn btn-green" type="submit">
-                Upload Material
+            <button type="submit" class="login-btn">
+                Login to Study Hub
             </button>
+
+            <p class="message" id="message" role="status"></p>
+
         </form>
 
-        <hr style="margin:20px 0">
-
-        <h3>Uploaded Materials</h3>
-        <div id="adminMaterials"></div>
-    </section>
-
-    <!-- STUDY MATERIALS -->
-    <section id="materials" class="card hidden">
-        <h2>Study Materials</h2>
-
-        <p id="accessMessage">
-            Log in as a student to access study materials.
-        </p>
-
-        <div id="materialList"></div>
-    </section>
-
-    <!-- SUBJECTS -->
-    <section id="subjects">
-        <h2 style="margin-bottom:20px">Explore Subjects</h2>
-
-        <div class="grid">
-            <div class="subject">
-                <h3>📘 Women's Health</h3>
-                <p>Maternal health, pregnancy and reproductive health.</p>
-            </div>
-
-            <div class="subject">
-                <h3>📗 Child & Adolescent Health</h3>
-                <p>Child development, nutrition and adolescent health.</p>
-            </div>
-                
-            <div class="subject">
-                <h3>📙 Occupational Health</h3>
-                <p> Metals in the Workplace, Occupational Hazards & Diseases,.</p>
-            </div>
-
-            <div class="subject">
-                <h3>📙 Health Systems Management</h3>
-                <p>Health services, PHC and health administration.</p>
-            </div>
-                
-            <div class="subject">
-                <h3>📕 Infectious Disease</h3>
-                <p>HIV and AIDS, Chikungunya fever, Typhoid & Food Poisoning.</p>
-            </div>
-
-            <div class="subject">
-                <h3>📕 Chronic Diseases</h3>
-                <p>NCD prevention, screening and management.</p>
-            </div>
-                
-            <div class="subject">
-                <h3>📕 Epidemology-2</h3>
-                <p>Disease outBreaks, Surveillance, field epidemology.</p>
-             </div>
-                
-             <div class="subject">
-                <h3>📕 Health Education and Communication</h3>
-                <p>APPROACHES INHEALTH, HUMAN BEHAVIOUR, Health Promotion.</p>
+        <div class="admin-note">
+            🔐 Access is for authorized users only.
         </div>
-    </section>
 
-</main>
+        <div class="footer">
+            © 2026 AR Study Hub<br>
+            Learn • Practice • Succeed
+        </div>
 
-<footer>
-    <h3>AR Study Hub</h3>
-    <p>Learn Today. Lead Tomorrow.</p>
-    <p style="margin-top:10px">
-        © 2026 AR Study Hub. All rights reserved.
-    </p>
-</footer>
+    </div>
 
-<script>
-/*
-  DEMO ONLY:
-  The credentials below are visible in the HTML source.
-  Never use this method for a public website.
-*/
-const DEMO_ADMIN_USERNAME = "Admin";
-const DEMO_ADMIN_PASSWORD = "Admin@123";
+    <script>
+        const passwordInput = document.getElementById("password");
+        const togglePassword = document.getElementById("togglePassword");
+        const loginForm = document.getElementById("loginForm");
+        const message = document.getElementById("message");
 
-let currentUser = null;
-let isAdmin = false;
-let materials = [];
+        // Show or hide password
+        togglePassword.addEventListener("click", function () {
+            const isPassword = passwordInput.type === "password";
 
-function showSection(sectionId) {
-    const sections = [
-        "login",
-        "adminLogin",
-        "dashboard",
-        "materials"
-    ];
+            passwordInput.type = isPassword ? "text" : "password";
+            togglePassword.textContent = isPassword ? "HIDE" : "SHOW";
+        });
 
-    sections.forEach(id => {
-        document.getElementById(id).classList.add("hidden");
-    });
+        // Login form
+        loginForm.addEventListener("submit", function (event) {
+            event.preventDefault();
 
-    if (sectionId === "dashboard" && !isAdmin) {
-        alert("Only the administrator can access the dashboard.");
-        return;
-    }
+            message.style.color = "#c0392b";
+            message.textContent =
+                "Login is not connected to an authentication server yet.";
+        });
 
-    if (sectionId === "materials" && !currentUser && !isAdmin) {
-        alert("Please log in before accessing study materials.");
-        sectionId = "login";
-    }
+        // Forgot password
+        document.getElementById("forgotPassword")
+            .addEventListener("click", function (event) {
+                event.preventDefault();
 
-    document.getElementById(sectionId).classList.remove("hidden");
-
-    if (sectionId === "materials") renderMaterials();
-    if (sectionId === "dashboard") renderAdminMaterials();
-
-    window.scrollTo({ top: 0, behavior: "smooth" });
-}
-
-function studentLogin(event) {
-    event.preventDefault();
-
-    const username = document.getElementById("studentName").value.trim();
-
-    if (!username) return;
-
-    currentUser = username;
-    isAdmin = false;
-
-    document.getElementById("studentMessage").textContent =
-        "Welcome, " + username + "! Demo student login successful.";
-
-    document.getElementById("accessMessage").textContent =
-        "Welcome, " + username + ". Available study materials:";
-
-    showSection("materials");
-}
-
-function adminLogin(event) {
-    event.preventDefault();
-
-    const username = document.getElementById("adminUsername").value;
-    const password = document.getElementById("adminPassword").value;
-
-    if (
-        username === SANATH_USERNAME &&
-        password === ADMIN_PASSWORD
-    ) {
-        currentUser = SANATH";
-        isAdmin = true;
-
-   if (
-        username === PRADEEP_USERNAME &&
-        password === ADMIN_PASSWORD
-    ) {
-        currentUser = PRADEEP";
-        isAdmin = true;
-
-
-
-        
-
-        document.getElementById("adminMessage").textContent =
-            "Admin login successful!";
-
-        showSection("dashboard");
-    } else {
-        document.getElementById("adminMessage").textContent =
-            "Incorrect username or password.";
-    }
-}
-
-function uploadMaterial(event) {
-    event.preventDefault();
-
-    if (!isAdmin) {
-        alert("Admin access required.");
-        return;
-    }
-
-    const title = document.getElementById("materialTitle").value.trim();
-    const subject = document.getElementById("materialSubject").value.trim();
-    const fileInput = document.getElementById("materialFile");
-    const file = fileInput.files[0];
-
-    if (!file || !title || !subject) return;
-
-    //  avoid selecting unnecessarily large files.
-    if (file.size > 30 * 1024 * 1024) {
-        alert(, please choose a file under 30 MB.");
-        return;
-    }
-
-    const allowedExtensions = [
-        "pdf", "ppt", "pptx", "doc", "docx", "txt"
-    ];
-
-    const extension = file.name.split(".").pop().toLowerCase();
-
-    if (!allowedExtensions.includes(extension)) {
-        alert("Please choose a supported study document.");
-        return;
-    }
-
-    const fileURL = URL.createObjectURL(file);
-
-    materials.push({
-        id: Date.now(),
-        title: title,
-        subject: subject,
-        filename: file.name,
-        url: fileURL
-    });
-
-    document.getElementById("uploadForm").reset();
-
-    renderAdminMaterials();
-
-    alert("Material added for this browser session.");
-}
-
-function renderMaterials() {
-    const list = document.getElementById("materialList");
-    list.innerHTML = "";
-
-    if (!materials.length) {
-        list.innerHTML =
-            "<p>No study materials have been uploaded yet.</p>";
-        return;
-    }
-
-    materials.forEach(item => {
-        const div = document.createElement("div");
-        div.className = "material";
-
-        const title = document.createElement("h3");
-        title.textContent = item.title;
-
-        const subject = document.createElement("p");
-        subject.textContent = "Subject: " + item.subject;
-
-        const filename = document.createElement("p");
-        filename.textContent = "File: " + item.filename;
-
-        const link = document.createElement("a");
-        link.href = item.url;
-        link.download = item.filename;
-        link.textContent = "Open / Download Material";
-
-        div.append(title, subject, filename, link);
-        list.appendChild(div);
-    });
-}
-
-function renderAdminMaterials() {
-    const list = document.getElementById("adminMaterials");
-    list.innerHTML = "";
-
-    if (!materials.length) {
-        list.textContent = "No materials uploaded in this session.";
-        return;
-    }
-
-    materials.forEach(item => {
-        const div = document.createElement("div");
-        div.className = "material";
-
-        const title = document.createElement("h3");
-        title.textContent = item.title;
-
-        const subject = document.createElement("p");
-        subject.textContent = "Subject: " + item.subject;
-
-        const remove = document.createElement("button");
-        remove.className = "btn btn-red";
-        remove.textContent = "Remove";
-
-        remove.onclick = () => {
-            if (!isAdmin) return;
-
-            URL.revokeObjectURL(item.url);
-            materials = materials.filter(m => m.id !== item.id);
-
-            renderAdminMaterials();
-            renderMaterials();
-        };
-
-        div.append(title, subject, remove);
-        list.appendChild(div);
-    });
-}
-
-function logout() {
-    currentUser = null;
-    isAdmin = false;
-
-    document.getElementById("studentName").value = "";
-    document.getElementById("adminUsername").value = "";
-    document.getElementById("adminPassword").value = "";
-
-    document.getElementById("studentMessage").textContent = "";
-    document.getElementById("adminMessage").textContent = "";
-
-    showSection("home");
-}
-
-// Start on the home page.
-showSection("home");
-</script>
+                message.style.color = "#5145cd";
+                message.textContent =
+                    "Please contact the AR Study Hub administrator to reset your password.";
+            });
+    </script>
 
 </body>
 </html>
