@@ -1,4 +1,4 @@
-```html
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -288,9 +288,16 @@
                 message.style.color = "#5145cd";
                 message.textContent =
                     "Please contact the AR Study Hub administrator to reset your password.";
+                message.getElementById("Username")
+                .addEventListener("click", function  (event) {
+                    event.preventDefault();
+
+
+
+                
             });
     </script>
 
 </body>
 </html>
-```
+
